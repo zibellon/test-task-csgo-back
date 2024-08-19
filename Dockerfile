@@ -28,25 +28,11 @@ FROM --platform=linux/amd64 alpine:3.20.0 AS deploy
 
 WORKDIR /app
 
-RUN apk add bash \
-  && apk add curl \
-  && curl -sSf https://atlasgo.sh | sh
+RUN apk add bash
 
 COPY swagger-ui-dist ./swagger-ui-dist
-COPY database ./database
 COPY --from=build ./app/dist-binary ./dist-binary
 
 #Команда для запуска сервера внутри контейнера
-CMD ["/bin/bash", "-c", "./database/db-migrate.sh && ./dist-binary/index"]
+CMD ["/bin/bash", "-c", "./dist-binary/index"]
 
-#########
-# Если не нужны миграции
-#########
-
-# RUN apk add bash
-
-# COPY swagger-ui-dist ./swagger-ui-dist
-# COPY --from=build ./app/dist-binary ./dist-binary
-
-# #Команда для запуска сервера внутри контейнера
-# CMD ["/bin/bash", "-c", "./dist-binary/index"]

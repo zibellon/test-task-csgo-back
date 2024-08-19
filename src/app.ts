@@ -4,7 +4,6 @@ import { swAddMethodList, swAddServerUrl, swaggerDOC } from 'core/swagger-doc';
 import { logInfo } from 'core/utils/logger';
 import cors from 'cors';
 import { pgInit } from 'database/postgres/postgres-sequelize-client';
-import { redisInit } from 'database/redis/redis-client';
 import express, { Request, Response } from 'express';
 import http from 'http';
 import ip from 'ip';
@@ -51,9 +50,6 @@ async function initDb() {
     extensionsCreate: true,
     sync: true,
     constraintsCreate: true,
-  });
-  await redisInit({
-    dbDrop: true,
   });
 }
 

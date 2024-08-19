@@ -1,3 +1,3 @@
-import { ExampleController } from './example.controller';
+import { ApiUserController } from './api-user.controller';
 
-export const controllers = [new ExampleController()];
+export const controllers = [new ApiUserController()];

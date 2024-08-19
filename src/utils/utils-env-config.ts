@@ -13,12 +13,6 @@ class ProcessENV {
 
   //PG - REPLICA
   public PG_DB_HOTS_LIST: string = '';
-
-  //REDIS - MAIN
-  public REDIS_DB_URL: string = 'IP';
-  public REDIS_PORT: number = 6379;
-  public REDIS_DB_NUMBER: number = 0; //ВСЕГДА 0
-  public REDIS_PASSWORD: string = '';
 }
 
 let processENV: ProcessENV | null = null;
@@ -57,20 +51,6 @@ export function getProcessEnv(): ProcessENV {
     //PG - REPLICA
     if (typeof process.env.PG_DB_HOTS_LIST === 'string') {
       processENV.PG_DB_HOTS_LIST = process.env.PG_DB_HOTS_LIST;
-    }
-
-    //DB - Redis
-    if (typeof process.env.REDIS_DB_URL === 'string') {
-      processENV.REDIS_DB_URL = process.env.REDIS_DB_URL;
-    }
-    if (typeof process.env.REDIS_PORT === 'string') {
-      processENV.REDIS_PORT = Number(process.env.REDIS_PORT);
-    }
-    if (typeof process.env.REDIS_DB_NUMBER === 'string') {
-      processENV.REDIS_DB_NUMBER = Number(process.env.REDIS_DB_NUMBER);
-    }
-    if (typeof process.env.REDIS_PASSWORD === 'string') {
-      processENV.REDIS_PASSWORD = process.env.REDIS_PASSWORD;
     }
   }
   return processENV;
