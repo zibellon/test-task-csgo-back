@@ -43,7 +43,7 @@ import { swBody200, swMessage200 } from 'utils/utils-swagger';
     return res;
   },
 })
-@Get({
+@Post({
   path: '/balance-down',
   summary: 'Уменьшение баланса (Что-то купил)',
   dtoBodySchema: apiUserBalanceDownReq,
