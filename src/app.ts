@@ -45,7 +45,6 @@ export async function appCleanUp() {}
 
 async function initDb() {
   await pgInit({
-    dbDrop: true,
     dbCreate: true,
     extensionsDrop: true,
     extensionsCreate: true,
