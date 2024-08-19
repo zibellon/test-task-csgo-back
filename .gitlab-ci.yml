@@ -1,28 +1,28 @@
-# stages:
-#   - build
-#   - deploy
+stages:
+  - build
+  - deploy
 
-# #BUILD
-# build:
-#   stage: build
-#   interruptible: true
-#   tags:
-#     - Internal
-#     - Worker
-#   script:
-#     - docker build . -t $CI_REGISTRY_IMAGE:latest
-#     - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
-#     - docker push $CI_REGISTRY_IMAGE:latest
+#BUILD
+build:
+  stage: build
+  interruptible: true
+  tags:
+    - Internal
+    - Worker
+  script:
+    - docker build . -t $CI_REGISTRY_IMAGE:latest
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:latest
 
-# ##################
-# #DEPLOY
+##################
+#DEPLOY
 
-# deploy:
-#   stage: deploy
-#   interruptible: true
-#   tags:
-#     - Internal
-#     - Manager
-#   script:
-#     - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
-#     - docker service update stack-name_service-name --with-registry-auth --image=$CI_REGISTRY_IMAGE:latest
+deploy:
+  stage: deploy
+  interruptible: true
+  tags:
+    - Internal
+    - Manager
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker service update test-task-csgo-back_master --with-registry-auth --image=$CI_REGISTRY_IMAGE:latest
