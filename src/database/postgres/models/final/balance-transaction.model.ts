@@ -15,14 +15,16 @@ export class BalanceTransactionModel extends Model {
   public id!: string;
 
   @Column({
-    defaultValue: BalanceTransactionDirectionEnum.DECREMENT,
     type: DataType.ENUM({ values: Object.values(BalanceTransactionDirectionEnum) }),
+    defaultValue: BalanceTransactionDirectionEnum.DECREMENT,
+    allowNull: false,
   })
   public direction!: BalanceTransactionDirectionEnum;
 
   @Column({
     type: DataType.DOUBLE,
     allowNull: false,
+    defaultValue: 0,
   })
   public amount!: number;
 

@@ -16,6 +16,7 @@ export class UserModel extends Model {
   @Column({
     type: DataType.DOUBLE,
     allowNull: false,
+    defaultValue: 0,
   })
   public balance!: number;
 
